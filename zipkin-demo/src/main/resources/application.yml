@@ -2,8 +2,6 @@ server:
   port: 9411
 
 spring:
-  rabbitmq:
-    host: ${RABBIT_HOST:localhost}
   sleuth:
     enabled: false
   application:
@@ -12,8 +10,3 @@ spring:
 zipkin:
   store:
     type: mem
-
-endpoints.health.sensitive: false
-endpoints.default.web.enabled: true
-management.security.enabled: false
-management.endpoints.web.base-path: /admin
