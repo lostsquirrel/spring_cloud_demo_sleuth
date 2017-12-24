@@ -1,0 +1,11 @@
+spring:
+  sleuth:
+    enabled: true
+    sampler:
+      percentage: 1.0
+
+  application:
+    name: sleuth-client
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+logging.level.org.springframework.cloud.sleuth: DEBUG
