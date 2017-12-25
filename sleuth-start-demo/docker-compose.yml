@@ -1,0 +1,61 @@
+version: '3.4'
+services:
+  sleuth1:
+    image: ${VERSIONED_IMAGE}
+    networks:
+      springcloud-overlay:
+        aliases:
+          - sleuth1
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+    environment:
+      RABBIT_HOST: 192.168.10.211
+      SPRING_APPLICATION_NAME: sleuth1
+      MY_NEXT_SERVICES: "sleuth2,/foo"
+  sleuth2:
+    image: ${VERSIONED_IMAGE}
+    networks:
+      springcloud-overlay:
+        aliases:
+          - sleuth2
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+    environment:
+      RABBIT_HOST: 192.168.10.211
+      SPRING_APPLICATION_NAME: sleuth2
+      MY_NEXT_SERVICES: "sleuth3,/baz;sleuth4,/baz"
+  sleuth3:
+    image: ${VERSIONED_IMAGE}
+    networks:
+      springcloud-overlay:
+        aliases:
+          - sleuth3
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+    environment:
+      RABBIT_HOST: 192.168.10.211
+      SPRING_APPLICATION_NAME: sleuth3
+  sleuth4:
+    image: ${VERSIONED_IMAGE}
+    networks:
+      springcloud-overlay:
+        aliases:
+          - sleuth4
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+    environment:
+      RABBIT_HOST: 192.168.10.211
+      SPRING_APPLICATION_NAME: sleuth4
+
+networks:
+  springcloud-overlay:
+    external:
+      name: springcloud-overlay
