@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+  store:
+    image: ${VERSIONED_IMAGE}
+    networks:
+      springcloud-overlay:
+        aliases:
+          - zipkin
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+    environment:
+      RABBIT_HOST: 192.168.10.211
+networks:
+  springcloud-overlay:
+    external:
+      name: springcloud-overlay
