@@ -29,6 +29,7 @@ services:
       RABBIT_HOST: 192.168.10.211
       SPRING_APPLICATION_NAME: sleuth2
       MY_NEXT_SERVICES: "sleuth3,/baz;sleuth4,/baz"
+      BOOT_EUREKA_SERVER: eureka1
   sleuth3:
     image: ${VERSIONED_IMAGE}
     networks:
@@ -42,6 +43,7 @@ services:
     environment:
       RABBIT_HOST: 192.168.10.211
       SPRING_APPLICATION_NAME: sleuth3
+      BOOT_EUREKA_SERVER: eureka1
   sleuth4:
     image: ${VERSIONED_IMAGE}
     networks:
@@ -55,6 +57,7 @@ services:
     environment:
       RABBIT_HOST: 192.168.10.211
       SPRING_APPLICATION_NAME: sleuth4
+      BOOT_EUREKA_SERVER: eureka1
 
 networks:
   springcloud-overlay:
