@@ -11,6 +11,7 @@ endif
 IMAGE=$(REGISTRY)/lisong/stores
 VERSIONED_IMAGE=$(IMAGE):$(IMAGETAG).$(shell git rev-parse --short HEAD)
 JAR_FILE=target/zipkin-start-demo-$(VERSION).jar
+SWARM_SERVICE_NAME=zipkin
 export VERSIONED_IMAGE
 export JAR_FILE
 # 登陆registry
@@ -37,10 +38,10 @@ test:
 	docker run --rm  $(VERSIONED_IMAGE)
 
 start:
-	docker stack deploy --with-registry-auth -c docker-compose.yml stores
+	docker stack deploy --with-registry-auth -c docker-compose.yml $(SWARM_SERVICE_NAME)
 
 remove:
-	docker stack rm stores
+	docker stack rm $(SWARM_SERVICE_NAME)
 # 删除构建失败的镜像
 #clean:
 #	docker rmi -f $(docker images | grep "<none>" | awk '{print $3}')

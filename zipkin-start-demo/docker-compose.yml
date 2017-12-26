@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  store:
+  zipkin:
     image: ${VERSIONED_IMAGE}
     networks:
       springcloud-overlay:
