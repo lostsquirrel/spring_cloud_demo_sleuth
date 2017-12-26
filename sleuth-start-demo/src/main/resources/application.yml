@@ -6,6 +6,6 @@ spring:
     name: ${SPRING_APPLICATION_NAME:sleuth-client}
   rabbitmq:
     host: ${RABBIT_HOST:localhost}
-my.next.services: ${MY_NEXT_SERVICES}
+my.next.services: ${MY_NEXT_SERVICES:}
 logging.level.org.springframework.cloud.sleuth: DEBUG
 debug: true
