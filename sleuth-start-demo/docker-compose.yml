@@ -14,6 +14,7 @@ services:
       RABBIT_HOST: 192.168.10.211
       SPRING_APPLICATION_NAME: sleuth1
       MY_NEXT_SERVICES: "sleuth2,/foo"
+      BOOT_EUREKA_SERVER: eureka1
   sleuth2:
     image: ${VERSIONED_IMAGE}
     networks:
