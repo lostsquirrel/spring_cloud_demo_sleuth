@@ -31,6 +31,8 @@ public class SleuthController {
 
     @Value("${my.next.services}")
     private String nextServices;
+    @Value("${server.port}")
+    private int port;
 
     @RequestMapping("/")
     public String home() {
@@ -55,7 +57,7 @@ public class SleuthController {
                 String k = _item[0];
                 String v = _item[1];
                 log.info("Hello from {}. Calling {}", appName, k);
-                String url = String.format("http://%s:8080/%s", k, v);
+                String url = String.format("http://%s:%s/%s", k, port, v);
                 String serviceX = restTemplate.getForObject(url, String.class);
                 log.info("Got response from {} [{}]", k, serviceX);
                 sb.append(String.format("from %s [%s]", k, serviceX));
@@ -85,7 +87,7 @@ public class SleuthController {
         Thread.sleep(500);
         try {
             log.info("Calling a missing service");
-            restTemplate.getForObject("http://localhost:8080/blowup", String.class);
+            restTemplate.getForObject(String.format("http://localhost:%s/blowup", port), String.class);
             return "Should blow up";
         } catch (Exception e) {
             log.error("Exception occurred while trying to send a request to a missing service", e);
