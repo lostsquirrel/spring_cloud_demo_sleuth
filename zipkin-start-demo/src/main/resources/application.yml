@@ -11,7 +11,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka1:8761/eureka/
+      defaultZone: http://${BOOT_EUREKA_SERVER:localhost}:8761/eureka/
 zipkin:
   store:
     type: mem

@@ -12,6 +12,7 @@ services:
       endpoint_mode: dnsrr
     environment:
       RABBIT_HOST: 192.168.10.211
+      BOOT_EUREKA_SERVER: eureka1
 networks:
   springcloud-overlay:
     external:
