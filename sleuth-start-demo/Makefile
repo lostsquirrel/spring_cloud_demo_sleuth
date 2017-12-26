@@ -8,7 +8,7 @@ ifndef REGISTRY
     REGISTRY=registry.cn-hangzhou.aliyuncs.com
 endif
 
-IMAGE=$(REGISTRY)/lisong/stores
+IMAGE=$(REGISTRY)/lisong/sleuth
 VERSIONED_IMAGE=$(IMAGE):$(IMAGETAG).$(shell git rev-parse --short HEAD)
 JAR_FILE=target/sleuth-start-demo-$(VERSION).jar
 export VERSIONED_IMAGE
