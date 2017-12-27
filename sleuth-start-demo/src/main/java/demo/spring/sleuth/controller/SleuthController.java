@@ -60,14 +60,15 @@ public class SleuthController {
                 String url = String.format("http://%s:%s/%s", k, port, v);
                 String serviceX = restTemplate.getForObject(url, String.class);
                 log.info("Got response from {} [{}]", k, serviceX);
-                sb.append(String.format("from %s [%s]", k, serviceX));
+                sb.append(String.format(" from %s [%s]", k, serviceX));
+                try {
+                    TimeUnit.MILLISECONDS.sleep(50L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             });
         }
-        try {
-            TimeUnit.MILLISECONDS.sleep(timeout);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 
 
         return sb.toString();
