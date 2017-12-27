@@ -53,6 +53,11 @@ public class SleuthController {
         if (!StringUtils.isEmpty(nextServices)) {
             sb.append(", response");
             Arrays.asList(nextServices.split(";")).forEach((item)  -> {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(50L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 String[] _item = item.split(",");
                 String k = _item[0];
                 String v = _item[1];
@@ -61,11 +66,7 @@ public class SleuthController {
                 String serviceX = restTemplate.getForObject(url, String.class);
                 log.info("Got response from {} [{}]", k, serviceX);
                 sb.append(String.format(" from %s [%s]", k, serviceX));
-                try {
-                    TimeUnit.MILLISECONDS.sleep(50L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
             });
         }
 

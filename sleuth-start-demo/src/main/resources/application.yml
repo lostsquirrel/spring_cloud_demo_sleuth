@@ -16,9 +16,12 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${BOOT_EUREKA_SERVER:localhost}:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
 my.next.services: ${MY_NEXT_SERVICES:}
 logging.level.org.springframework.cloud.sleuth: DEBUG
 debug: true
 
 server:
-  port: 8084
+  port: 8080
