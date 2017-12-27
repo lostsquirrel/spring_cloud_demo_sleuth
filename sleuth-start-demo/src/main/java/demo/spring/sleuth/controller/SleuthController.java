@@ -63,6 +63,11 @@ public class SleuthController {
                 sb.append(String.format("from %s [%s]", k, serviceX));
             });
         }
+        try {
+            TimeUnit.MILLISECONDS.sleep(timeout);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         return sb.toString();
